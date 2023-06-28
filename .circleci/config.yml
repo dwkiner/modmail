@@ -1,0 +1,15 @@
+orbs:
+  docker: circleci/docker@1.7.0
+jobs:
+  modmail:
+    docker:
+      # replace with your preferred image
+      - image: cimg/python
+      - setup_remote_docker
+      - run:
+          name: Build images of services declared in docker-compose.yml
+          command: docker-compose up -d
+workflows:
+  main-workflow:
+    jobs:
+      - modmail
